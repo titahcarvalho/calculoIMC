@@ -1,0 +1,73 @@
+package com.company;
+
+import imc.Imc;
+import imc.ImcNovo;
+
+public class Main {
+
+    public static void main(String[] args) {
+	// write your code here
+    /*    double peso = 80;
+        double altura = 1.80;
+
+        double imc = (peso/(altura*altura));
+        System.out.println("O imc é:"+ imc);*/
+
+        Imc imc1 = new Imc(80,2.10);
+        System.out.println("A classifição é:"+ imc1.classificacao());
+
+        ImcNovo imc2 = new ImcNovo(80,2.10);
+        System.out.println("A classifição é:"+ imc2.classificacao());
+
+
+
+    }
+}
+****************************************************************************
+
+package imc;
+
+public class Imc {
+    public double peso;
+    public double altura;
+    public double imc;
+
+    public Imc(double peso, double altura) {//metodo construtor sem retorno, mas com parametros
+        this.peso =peso;
+        this.altura =altura;
+    }
+    public void calculaImc(){
+        this.imc=(this.peso/(this.altura*this.altura));
+
+    }
+    public String classificacao() {
+        this.calculaImc();
+        if (this.imc < 18.5) return "MAGREZA";
+        if (this.imc < 24.9) return "SAUDÁVEL";
+        if (this.imc < 29.9) return "SOBREPESO";
+        if (this.imc < 39.9) return "OBESIDADE";
+        return "OBESIDADE GRAVE";
+    }
+
+
+ }
+********************************************************************************
+
+package imc;
+
+public class ImcNovo extends Imc {
+    public ImcNovo(double peso, double altura){
+        super(peso,altura);
+    }
+    public String classificacao() {
+            this.calculaImc();
+            if (this.imc < 16) return "MAGREZA GRAVE";
+            if (this.imc < 17) return "MAGREZA MODERADA";
+            if (this.imc < 18.5) return "MAGREZA LEVE";
+            if (this.imc < 25) return "SAUDÁVEL/NORMAL";
+            if (this.imc < 30) return "SOBREPESO";
+            if (this.imc < 35) return "OBESIDADE GRAU I";
+            if (this.imc < 40) return "OBESIDADE GRAU II";
+            return "OBESIDADE GRAU III";
+    }
+}
